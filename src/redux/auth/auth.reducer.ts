@@ -36,6 +36,7 @@ const authReducer = (state = initialState, action: AuthAction) => {
             error: action.payload
         }
     }
+    return state;
 }
 
 export type AuthReducer = ReturnType<typeof authReducer>;
