@@ -1,5 +1,5 @@
 import { ThunkAction } from "redux-thunk";
-import { AuthAction, SET_LOADING, SET_ERROR, SignInData, Admin, SET_USER, SIGN_OUT } from "../types";
+import { AuthAction, SET_LOADING, SET_ERROR, SignInData, Admin, SET_USER } from "../types";
 import { AuthReducer } from "./auth.reducer";
 import { auth } from '../../config/firbase.config';
 import log from "../../Util/Logger";
@@ -32,7 +32,8 @@ export const setError = (msg: string): ThunkAction<void, AuthReducer, null, Auth
 export const signIn = (data: SignInData): ThunkAction<void, AuthReducer, null, AuthAction> => async dispatch => {
 	try {
 		dispatch(setLoading(true));
-		await auth.signInWithEmailAndPassword(data.email, data.password);
+		const result = await auth.signInWithEmailAndPassword(data.email, data.password);
+		log(result);
 	} catch (err) {
 		log('authActions signin: ' + err);
 		dispatch(setError(err.message));
@@ -46,7 +47,6 @@ export const signOut = (): ThunkAction<void, AuthReducer, null, AuthAction> => a
 	try {
 		dispatch(setLoading(true));
 		await auth.signOut();
-		dispatch({type: SIGN_OUT});
 	} catch (err) {
 		log('authActions signOut: ' + err);
 		dispatch(setError(err.message));
