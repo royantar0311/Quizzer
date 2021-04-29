@@ -30,9 +30,11 @@ const PageHeader = (props: any) => {
     return (
         <Paper elevation={0} square className={classes.root}>
             <div className={classes.pageHeader}>
-                <Card className={classes.pageIcon}>
-                    {icon}
-                </Card>
+                {icon && 
+                    <Card className={classes.pageIcon}>
+                        {icon}
+                    </Card>
+                }
                 <div className={classes.pageTitle}>
                     <Typography variant="h6" component="div" >
                         {title}

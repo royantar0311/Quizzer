@@ -38,4 +38,6 @@ interface SetErrorAction {
     payload: string;
 }
 
+
+
 export type AuthAction = SetUserAction | SetLoadingAction | SignOutAction | SetErrorAction;
