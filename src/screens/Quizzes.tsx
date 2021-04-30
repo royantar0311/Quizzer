@@ -1,39 +1,37 @@
-import { Grid, makeStyles, Paper } from '@material-ui/core';
+import { Grid,  makeStyles, Paper } from '@material-ui/core';
 import React, {FC} from 'react';
-import { useParams } from 'react-router';
+import { useSelector } from 'react-redux';
+import {Link} from 'react-router-dom';
 import { Controls, PageHeader } from '../components';
+import { Quiz } from '../redux/quiz/quiz.types';
 
-const quizzes = [
-    {name: 'Stress Test', instructions: 'asdasd', quizCode: '2r2q', description: 'test for aci limited'},
-    {name: 'asdasdawqfa', instructions: 'aasdacsdasd', quizCode: '2t2q', description: 'acawwf'},
-    {name: 'Stress Test', instructions: 'asdasd', quizCode: '2r2q', description: 'test for aci limited'},
-    {name: 'asdasdawqfa', instructions: 'aasdacsdasd', quizCode: '2t2q', description: 'acawwf'},
-    {name: 'Stress Test', instructions: 'asdasd', quizCode: '2r2q', description: 'test for aci limited'},
-    {name: 'asdasdawqfa', instructions: 'aasdacsdasd', quizCode: '2t2q', description: 'acawwf'},
-    {name: 'Stress Test', instructions: 'asdasd', quizCode: '2r2q', description: 'test for aci limited'},
-    {name: 'asdasdawqfa', instructions: 'aasdacsdasd', quizCode: '2t2q', description: 'acawwf'},
-]
+
 
 const useStyles = makeStyles(theme => ({
     root: {
         
     },
     paperStyle: {
-        width: '30%',
+        textAlign: 'center',
+        width: '500px',
         height: '170px',
         margin: '30px auto',
         padding: theme.spacing(1),
         borderRadius: '25px',
-        '& MuiButtonBase-root': {
-            margin: '0px'
-        }
+        '& MuiGrid-root': {
+            margin: '10px auto'
+        },
+        borderColor: 'primary'
+    },
+    buttonStyle: {
+        textDecoration: 'none'
     }
 }));
 const Quizzes : FC = () =>  {
-    // @ts-ignore
-    const {quizCode} = useParams();
+     
     const classes = useStyles();
-
+    // @ts-ignore
+    const quizzes : Quiz[] = useSelector(state => state.quiz.quizzes);
     return (
         <>
          {console.log('asda')}
@@ -52,13 +50,17 @@ const Quizzes : FC = () =>  {
                         </Grid>
                         <Grid item xs></Grid>
                         <Grid item>
+
                             <Grid item>
+                                <Link to={`/quiz/${quiz.quizCode}`} className={classes.buttonStyle}>
                                 <Controls.Button
+                                    className={classes.buttonStyle}
                                     variant="outlined"
                                     color="primary"
                                     >Enter</Controls.Button>
+                                </Link>
                             </Grid>
-                        </Grid>
+                            </Grid>
                     </Grid>
                 </Paper>
                 

@@ -44,7 +44,7 @@ const Home : FC = () => {
     const handleSubmit = (e: any) => {
         e.preventDefault();
         if(validate()){
-            history.push(`/quizzes/${data.quizCode}`);
+            history.push(`/quiz/${data.quizCode}`);
         }
     }
     return (

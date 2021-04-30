@@ -10,6 +10,7 @@ import {Switch, Route, BrowserRouter as Router, useHistory} from 'react-router-d
 import Quizzes from './screens/Quizzes';
 import Home from './screens/Home';
 import { getQuizzes } from './redux/quiz/quiz.actions';
+import Quiz from './screens/Quiz';
 
 
 const theme = createMuiTheme({
@@ -64,15 +65,18 @@ const App : FC = () => {
           <Header/>
 
           <Switch>
-          <Route exact path="/home">
-              <Home />
-            </Route>
-            <Route exact path="/login">
-              <Login />
-            </Route>
-            <Route exact path="/quizzes">
-              <Quizzes />
-            </Route>
+            <Route exact path="/home">
+                <Home />
+              </Route>
+              <Route exact path="/login">
+                <Login />
+              </Route>
+              <Route exact path="/quizzes">
+                <Quizzes />
+              </Route>
+              <Route exact path="/quiz/:quizCode">
+                <Quiz />
+              </Route>
             
           </Switch>
          

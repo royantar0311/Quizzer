@@ -1,8 +1,17 @@
 import { QuizAction, QuizState, SET_DATA, SET_ERROR, SET_LOADING } from "./quiz.types";
 
-
+const quizzes = [
+    {name: 'Stress Test', instructions: 'asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd', quizCode: '2r2q', description: 'test for aci limited'},
+    {name: 'asdasdawqfa', instructions: 'aasasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasddacsdasd', quizCode: '2t2q', description: 'acawwf'},
+    {name: 'Stress Test', instructions: 'asdasd', quizCode: '2r2q', description: 'test for aci limited'},
+    {name: 'asdasdawqfa', instructions: 'aasdacsdasd', quizCode: '2t2q', description: 'acawwf'},
+    {name: 'Stress Test', instructions: 'asdasd', quizCode: '2r2q', description: 'test for aci limited'},
+    {name: 'asdasdawqfa', instructions: 'aasdacsdasd', quizCode: '2t2q', description: 'acawwf'},
+    {name: 'Stress Test', instructions: 'asdasd', quizCode: '2r2q', description: 'test for aci limited'},
+    {name: 'asdasdawqfa', instructions: 'aasdacsdasd', quizCode: '2t2q', description: 'acawwf'},
+]
 const initialState: QuizState = {
-    quizzes: [],
+    quizzes: quizzes,
     isLoading: false,
     error: ''
 }

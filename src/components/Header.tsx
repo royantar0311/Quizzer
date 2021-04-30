@@ -1,9 +1,8 @@
 import { AppBar, Toolbar, Grid, makeStyles, Typography} from "@material-ui/core";
-import React, { FC, useEffect } from "react";
+import React, { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router";
 import { signOut } from "../redux/auth/auth.actions";
-import log from "../Util/Logger";
 
 const useStyles = makeStyles(theme => ({
   root: {

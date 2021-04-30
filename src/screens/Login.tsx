@@ -17,12 +17,11 @@ const useStyles = makeStyles(theme => ({
         height: '500px',
         margin: '30px auto',
         padding: theme.spacing(2),
+        textAlign: 'center'
     },
     buttonStyle: {
         // margin: '30px auto',
         // padding: theme.spacing(3)
-        position: 'absolute',
-        right: '10px'
     }
 }));
 
@@ -41,7 +40,6 @@ const Login : FC = () => {
         let temp = {...errors};
         
         if('email' in fieldsValues){
-            
             temp.email = fieldsValues.email !== ""?"":"This field is required";
             temp.email = emailRegex.test(fieldsValues.email) === true?"":"Invalid Email";
         }
