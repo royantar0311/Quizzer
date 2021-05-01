@@ -38,7 +38,6 @@ const Quizzes : FC = () =>  {
         {   
        
             quizzes.map((quiz) => 
-            
                 <Paper elevation={10} className={classes.paperStyle}>
                     <Grid container>
                         <Grid item>
@@ -63,7 +62,6 @@ const Quizzes : FC = () =>  {
                             </Grid>
                     </Grid>
                 </Paper>
-                
             )
         }
         </>

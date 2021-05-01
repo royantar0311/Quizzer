@@ -1,5 +1,5 @@
 import { Grid, makeStyles, Paper } from '@material-ui/core';
-import React, {FC} from 'react';
+import {FC} from 'react';
 import { Controls, Form, PageHeader, useForm } from '../components';
 import InputIcon from '@material-ui/icons/Input';
 import { useHistory } from 'react-router';
@@ -19,8 +19,10 @@ const useStyles = makeStyles(theme => ({
         width: '100%'
     }
 }));
-
-const initialState = {
+interface state {
+    quizCode: String;
+}
+const initialState : state= {
     quizCode: ''
 }
 
@@ -33,7 +35,6 @@ const Home : FC = () => {
         if('quizCode' in fieldsValues){
             temp.quizCode = fieldsValues.quizCode === ""?"This field is required":"";
         }
-        console.log(temp);
         setErrors({
             ...temp
         })

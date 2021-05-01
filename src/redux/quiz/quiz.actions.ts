@@ -2,7 +2,7 @@ import { ThunkAction } from "redux-thunk";
 import { firestore } from '../../config/firbase.config';
 import log from "../../Util/Logger";
 import { QuizReducer } from "./quiz.reducer";
-import { Quiz, QuizAction, SET_DATA, SET_ERROR, SET_LOADING } from "./quiz.types";
+import { DELETE_QUIZ, Quiz, QuizAction, SET_DATA, SET_ERROR, SET_LOADING } from "./quiz.types";
 export const getQuizzes = ()
         : ThunkAction<void, QuizReducer, null, QuizAction> => async dispatch => {
 	try {
@@ -45,4 +45,10 @@ export const setError = (msg: string): ThunkAction<void, QuizReducer, null, Quiz
 			payload: msg
 		});
 	}
+}
+export const deleteQuiz = (quiz: Quiz) : ThunkAction<void, QuizReducer, null, QuizAction> => dispatch =>{
+	dispatch({
+		type: DELETE_QUIZ,
+		payload: quiz
+	})
 }

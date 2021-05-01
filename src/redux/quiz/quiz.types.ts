@@ -1,12 +1,13 @@
 export const SET_LOADING = 'SET_LOADING';
 export const SET_ERROR = 'SET_ERROR';
 export const SET_DATA = 'SET_DATA';
+export const DELETE_QUIZ = 'DELETE_QUIZ';
 
 export interface Quiz {
-    quizCode: String,
-    name: String,
-    description: String,
-    instructions: String
+    quizCode: string,
+    name: string,
+    description: string,
+    instructions: string
 }
 
 export interface QuizState {
@@ -30,4 +31,11 @@ interface SetErrorAction {
     payload: string;
 }
 
-export type QuizAction = SetDataAction | SetLoadingAction | SetErrorAction;
+interface DeleteQuizAction {
+    type: typeof DELETE_QUIZ;
+    payload: {
+        quizCode: string;
+    };
+}
+
+export type QuizAction = SetDataAction | SetLoadingAction | SetErrorAction | DeleteQuizAction;

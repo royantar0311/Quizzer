@@ -3,10 +3,11 @@ import { Controls, Form, PageHeader, useForm } from '../components';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import { Grid, makeStyles, Paper } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory} from 'react-router';
-import { SignInData } from '../redux/types';
-import { emailRegex } from '../Util/Regex';
+import {  useHistory} from 'react-router';
+import { AuthState, SignInData } from '../redux/types';
 import { signIn } from '../redux/auth/auth.actions';
+import { RootState } from '../redux/root.reducer';
+import { validate } from '../Util';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -18,10 +19,6 @@ const useStyles = makeStyles(theme => ({
         margin: '30px auto',
         padding: theme.spacing(2),
         textAlign: 'center'
-    },
-    buttonStyle: {
-        // margin: '30px auto',
-        // padding: theme.spacing(3)
     }
 }));
 
@@ -33,39 +30,20 @@ const initialState : SignInData = {
 const Login : FC = () => {
     const history = useHistory();
     const classes = useStyles();
-    // @ts-ignore
-    const isAuthenticated = useSelector(state => state.auth.authenticated);
+    const authState : AuthState = useSelector((state : RootState) => state.auth);
     const dispatch = useDispatch();
-    const validate : Function = (fieldsValues = data) => {
-        let temp = {...errors};
-        
-        if('email' in fieldsValues){
-            temp.email = fieldsValues.email !== ""?"":"This field is required";
-            temp.email = emailRegex.test(fieldsValues.email) === true?"":"Invalid Email";
-        }
-        if('password' in fieldsValues){
-            temp.password = fieldsValues.password !== ""?"":"This field is required";
-            temp.password = fieldsValues.password.length >= 6?"":"Password should be of at least length 6";
-        }
-        
-        setErrors({
-            ...temp
-        })
-
-        return Object.values(temp).every(x => x === "");
-    }
     const [data, _, errors, setErrors, handleChange] = useForm(initialState, true, validate);
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        if(validate()){
+        if(validate(data, errors, setErrors)){
             dispatch(signIn(data));
         }
     }
     useEffect(() => {
-        if(isAuthenticated === true)history.push('/home');
-    }, [isAuthenticated])
-    
+        if(authState.authenticated)history.push('/home');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [authState.authenticated])
     return (
         <div>
             <Paper elevation={10} className={classes.paperStyle}>
@@ -89,7 +67,7 @@ const Login : FC = () => {
                             value={data.password} 
                             onChange={handleChange}/>
                         <Controls.Button 
-                            className={classes.buttonStyle}
+                            // className={classes.buttonStyle}
                             variant="outlined"
                             color="primary"
                             size="large"

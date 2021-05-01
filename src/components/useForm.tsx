@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core';
-import React, { useState } from 'react'
+import  { useState } from 'react'
 
-const useForm = (initialState:any, validateOnChange = false, validate: any) => {
+const useForm = (initialState: any, validateOnChange?: boolean, validate?: Function) => {
     const [state, setState] = useState(initialState);
     const [errors, setErrors] = useState({});
 
@@ -16,8 +16,8 @@ const useForm = (initialState:any, validateOnChange = false, validate: any) => {
             ...state,
             [e.target.name]: e.target.value
         })
-        if(validateOnChange === true){
-            validate({[e.target.name]: e.target.value});
+        if(validateOnChange === true && validate !== undefined){
+            validate({[e.target.name]: e.target.value}, errors, setErrors);
         }
     }
 
