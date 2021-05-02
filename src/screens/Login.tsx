@@ -1,13 +1,14 @@
 import React, { FC, useEffect } from 'react';
 import { Controls, Form, PageHeader, useForm } from '../components';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
-import { Grid, makeStyles, Paper } from '@material-ui/core';
+import { CircularProgress, Grid, makeStyles, Paper } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import {  useHistory} from 'react-router';
 import { AuthState, SignInData } from '../redux/types';
 import { signIn } from '../redux/auth/auth.actions';
 import { RootState } from '../redux/root.reducer';
 import { validate } from '../Util';
+import Loader from '../components/useLoader';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -43,7 +44,8 @@ const Login : FC = () => {
     useEffect(() => {
         if(authState.authenticated)history.push('/home');
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [authState.authenticated])
+    }, [authState.authenticated]);
+    if(authState.isLoading)return <Loader/>;
     return (
         <div>
             <Paper elevation={10} className={classes.paperStyle}>
