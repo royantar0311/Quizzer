@@ -3,17 +3,15 @@ import { useDispatch } from 'react-redux';
 import { auth } from './config/firbase.config';
 import Header from './components/Header'
 import { CircularProgress, createMuiTheme, makeStyles,ThemeProvider } from '@material-ui/core';
-import Login from './screens/Login';
 import { setUser } from './redux/auth/auth.actions';
 import { SIGN_OUT } from './redux/types';
 import {Switch, Route, BrowserRouter as Router} from 'react-router-dom'
-import Quizzes from './screens/Quizzes';
 import Home from './screens/Home';
-import Quiz from './screens/Quiz';
-import Loader from './components/useLoader';
-// import QuizList from './screens/QuizList';
 
 const QuizList = lazy(() => import ('./screens/QuizList'));
+const Quiz = lazy(() => import ('./screens/Quiz'));
+const Login = lazy(() => import ('./screens/Login'));
+const Quizzes = lazy(() => import ('./screens/Quizzes'));
 
 const theme = createMuiTheme({
   palette: {
@@ -63,7 +61,13 @@ const App : FC = () => {
             <Header/>
             <Suspense fallback={<CircularProgress />} >
               <Switch>
-                <Route exact path="/home">
+                  <Route exact path="/home">
+                    <Home />
+                  </Route>
+                  <Route exact path="/">
+                    <Home />
+                  </Route>
+                  <Route exact path="/home">
                     <Home />
                   </Route>
                   <Route exact path="/login">

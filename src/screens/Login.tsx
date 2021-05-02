@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import { Controls, Form, PageHeader, useForm } from '../components';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
-import { CircularProgress, Grid, makeStyles, Paper } from '@material-ui/core';
+import { Grid, makeStyles, Paper } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import {  useHistory} from 'react-router';
 import { AuthState, SignInData } from '../redux/types';
