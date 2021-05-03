@@ -2,16 +2,17 @@ import { FC, useEffect, lazy, Suspense } from 'react';
 import { useDispatch } from 'react-redux';
 import { auth } from './config/firbase.config';
 import Header from './components/Header'
-import { CircularProgress, createMuiTheme, makeStyles,ThemeProvider } from '@material-ui/core';
+import { createMuiTheme, makeStyles,ThemeProvider } from '@material-ui/core';
 import { setUser } from './redux/auth/auth.actions';
 import { SIGN_OUT } from './redux/types';
-import {Switch, Route, BrowserRouter as Router} from 'react-router-dom'
-import Home from './screens/Home';
+import {Switch, Route} from 'react-router-dom'
+import Loader from './components/useLoader';
 
-const QuizList = lazy(() => import ('./screens/QuizList'));
 const Quiz = lazy(() => import ('./screens/Quiz'));
 const Login = lazy(() => import ('./screens/Login'));
-const Quizzes = lazy(() => import ('./screens/Quizzes'));
+const Admin = lazy(() => import ('./screens/Admin/'));
+const Home = lazy(() => import ('./screens/Home'));
+const PageNotFound = lazy(() => import ('./screens/PageNotFound'));
 
 const theme = createMuiTheme({
   palette: {
@@ -56,10 +57,9 @@ const App : FC = () => {
   
   return (
     <ThemeProvider theme={theme}>
-      <Router>
         <div className={classes.appMain}>
             <Header/>
-            <Suspense fallback={<CircularProgress />} >
+            <Suspense fallback={<Loader />} >
               <Switch>
                   <Route exact path="/home">
                     <Home />
@@ -73,19 +73,18 @@ const App : FC = () => {
                   <Route exact path="/login">
                     <Login />
                   </Route>
-                  <Route exact path="/quizzes">
-                    <Quizzes />
-                  </Route>
                   <Route exact path="/quiz/:quizCode">
                     <Quiz />
                   </Route>
-                  <Route exact path="/admin/quizlist">
-                    <QuizList />
+                  <Route path="/admin">
+                    <Admin />
+                  </Route>
+                  <Route path="/pagenotfound">
+                    <PageNotFound />
                   </Route>
               </Switch>
             </Suspense>
         </div>
-      </Router>
     </ThemeProvider>
     
   );

@@ -1,14 +1,14 @@
 import { makeStyles, Paper, TableBody, TableCell, TableRow } from '@material-ui/core';
 import {FC, useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import ActionButton from '../components/controls/ActionButton';
-import useTable from '../components/useTable';
-import { Quiz } from '../redux/quiz/quiz.types';
-import { RootState } from '../redux/root.reducer';
+import ActionButton from '../../components/controls/ActionButton';
+import useTable from '../../components/useTable';
+import { Quiz } from '../../redux/quiz/quiz.types';
+import { RootState } from '../../redux/root.reducer';
 import EditIcon from '@material-ui/icons/Edit';
 import CancelIcon from '@material-ui/icons/Cancel';
-import log from '../Util/Logger';
-import { deleteQuiz } from '../redux/quiz/quiz.actions';
+import log from '../../Util/Logger';
+import { deleteQuiz } from '../../redux/quiz/quiz.actions';
 const headCells = [
     { id: 'quizCode', label: 'Code' },
     { id: 'quizName', label: 'Name' },

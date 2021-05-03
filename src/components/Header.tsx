@@ -2,10 +2,11 @@ import { AppBar, Toolbar, Grid, makeStyles, Typography} from "@material-ui/core"
 import React, { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router";
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { signOut } from "../redux/auth/auth.actions";
 import { RootState } from "../redux/root.reducer";
 import { AuthState } from "../redux/types";
+import log from "../Util/Logger";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -22,6 +23,11 @@ const useStyles = makeStyles(theme => ({
     '& .MuiSvgIcon-root': {
       marginRight: theme.spacing(5)
     }
+  },
+  button: {
+    textDecoration: 'none', 
+    padding: '20px', 
+    color: 'white'
   }
 }));
 
@@ -33,7 +39,8 @@ const Header: FC = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
 
-  const handlePowerClicked = (e: any) => {
+  const handleLogInOutClicked = (e: any) => {
+    log('here');
     if(authState.authenticated){
       dispatch(signOut());
     }
@@ -47,31 +54,41 @@ const Header: FC = () => {
   const logInOutText = () => {
     return authState.authenticated ? 'Log Out' : 'Log in';
   } 
+  const logInOutLink = () => {
+    return authState.authenticated ? '#' : '/login';
+  } 
   return (
     <AppBar position="static" className={classes.root}>
-      <Toolbar> 
-        <Grid container alignItems='center'>
-        <Grid item sm>
-         
-        </Grid>
-          <Grid item sm></Grid>
-		  <Grid item>
-            { authState.authenticated===true && <Link to="/admin/quizList" style={{ textDecoration: 'none', padding: '20px', color: 'white' }}>
-				Quiz List
-            </Link>} 
-          </Grid>
-          <Grid item>
-          
-			<Typography style={{cursor: 'pointer'}} variant="subtitle2" component="div" onClick={handlePowerClicked}>
-			{ location.pathname !== '/login' ?
-				logInOutText()
-				: null
+    	<Toolbar> 
+			<Grid container alignItems='center'>
+			<Grid item sm />
+			<Grid item>
+				<NavLink to="/Home" className={classes.button}>
+					Home
+				</NavLink>
+       		 </Grid>
+			{authState.authenticated===true &&   
+				<>
+					<Grid item>
+						<NavLink to="/admin/create" className={classes.button}>
+							Create Quiz
+						</NavLink>
+					</Grid>
+					<Grid item>
+						<NavLink to="/admin/quizList" className={classes.button}>
+							Quiz List
+						</NavLink>
+					</Grid>
+				</>
 			}
-			</Typography>
+        
+        <Grid item>
+          <NavLink to={logInOutLink()} className={classes.button} onClick={handleLogInOutClicked}>
+                {location.pathname !== '/login' ? logInOutText() : "" }
+              </NavLink>
+            </Grid>
           </Grid>
-          
-        </Grid>
-      </Toolbar>
+        </Toolbar>
     </AppBar>
   );
 };
