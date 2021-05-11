@@ -63,13 +63,14 @@ const Home : FC = () => {
                             label='Code' 
                             value={data.quizCode} 
                             onChange={handleChange}/>
-                            <Controls.Button 
+                        <Controls.Button 
                             className={classes.buttonStyle}
                             variant="outlined"
                             color="primary"
                             size="large"
-                            onClick={handleSubmit}
-                            >Find</Controls.Button>                      
+                            onClick={handleSubmit} >
+                            Find
+                        </Controls.Button>                      
                     </Grid>
                 </Form>
             </Paper>

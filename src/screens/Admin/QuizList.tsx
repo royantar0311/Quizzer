@@ -28,7 +28,6 @@ const QuizList : FC = () => {
     const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
     useEffect(() => {
         setRecords(quizzes);
-        console.log('here')
     }, [quizzes]);
     const {
         TblContainer,

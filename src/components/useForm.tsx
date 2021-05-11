@@ -11,7 +11,6 @@ const useForm = (initialState: any, validateOnChange?: boolean, validate?: Funct
     }
 
     const handleChange = (e: any) => {
-        console.log(e.target.value)
         setState({
             ...state,
             [e.target.name]: e.target.value

@@ -16,6 +16,15 @@ export interface QuizState {
     error: string
 }
 
+export interface Question {
+    questionText: string,
+    weights: string,
+    emotions: string,
+    imageLink: string
+    category: string,
+    options: string
+}
+
 interface SetDataAction {
     type: typeof SET_DATA;
     payload: Quiz[];

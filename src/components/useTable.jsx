@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 import { Table, TableHead, TableRow, TableCell, makeStyles, TablePagination, TableSortLabel } from '@material-ui/core'
-import {Quiz} from '../redux/quiz/quiz.types';
 const useStyles = makeStyles(theme => ({
     table: {
         marginTop: theme.spacing(3),
         '& thead th': {
             fontWeight: '600',
-            color: theme.palette.primary.main,
+            color: 'white',
             backgroundColor: theme.palette.primary.light,
         },
         '& tbody td': {

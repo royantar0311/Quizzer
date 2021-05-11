@@ -1,4 +1,4 @@
-import { AppBar, Toolbar, Grid, makeStyles, Typography} from "@material-ui/core";
+import { AppBar, Toolbar, Grid, makeStyles} from "@material-ui/core";
 import React, { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router";
@@ -6,7 +6,6 @@ import { NavLink } from 'react-router-dom'
 import { signOut } from "../redux/auth/auth.actions";
 import { RootState } from "../redux/root.reducer";
 import { AuthState } from "../redux/types";
-import log from "../Util/Logger";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -40,7 +39,6 @@ const Header: FC = () => {
   const classes = useStyles();
 
   const handleLogInOutClicked = (e: any) => {
-    log('here');
     if(authState.authenticated){
       dispatch(signOut());
     }
@@ -81,14 +79,13 @@ const Header: FC = () => {
 					</Grid>
 				</>
 			}
-        
-        <Grid item>
-          <NavLink to={logInOutLink()} className={classes.button} onClick={handleLogInOutClicked}>
-                {location.pathname !== '/login' ? logInOutText() : "" }
-              </NavLink>
-            </Grid>
+          <Grid item>
+            <NavLink to={logInOutLink()} className={classes.button} onClick={handleLogInOutClicked}>
+                  {location.pathname !== '/login' ? logInOutText() : "" }
+            </NavLink>
           </Grid>
-        </Toolbar>
+        </Grid>
+      </Toolbar>
     </AppBar>
   );
 };
