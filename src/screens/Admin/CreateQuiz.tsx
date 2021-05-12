@@ -18,6 +18,7 @@ const useStyles = makeStyles(theme => ({
     },
     chipsStyle: {
         marginLeft: '20px', 
+        height: "70px",
     }
 }));    
 const headCells = [
@@ -30,7 +31,17 @@ const headCells = [
     { id: 'action', label: 'Action'},
 ];
 
-const initialState: Question[] = [];
+const initialState: Question[] = [
+    {
+        category: 'physics',
+        emotions: 'asd',
+        imageLink: 'qsd',
+        options: 'asdasd',
+        questionText: 'asdasd asdasdasd asdasdasd',
+        weights: '10,20,30',
+        id: '1'
+    }
+];
 
 const CreateQuiz : FC = () => {
     const classes = useStyles();
@@ -70,7 +81,8 @@ const CreateQuiz : FC = () => {
             <TableBody>
             {
                 records.map((question : Question) =>
-                        <TableRow key={question.questionText}>
+                        <TableRow key={question.id}>
+                            <TableCell>{question.questionText}</TableCell> 
                             <TableCell>{question.options}</TableCell> 
                             <TableCell>{question.emotions}</TableCell> 
                             <TableCell>{question.weights}</TableCell> 

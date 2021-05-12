@@ -17,6 +17,7 @@ export interface QuizState {
 }
 
 export interface Question {
+    id: string,
     questionText: string,
     weights: string,
     emotions: string,
