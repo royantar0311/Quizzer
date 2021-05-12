@@ -1,4 +1,4 @@
-import {FC, useState} from 'react';
+import React, { useState} from 'react';
 import { makeStyles, Paper, TableBody, TableCell, TableRow } from '@material-ui/core';
 import { Controls, PageHeader } from '../../components';
 import AddBoxIcon from '@material-ui/icons/AddBox';
@@ -30,8 +30,7 @@ const headCells = [
     { id: 'imageLink', label: 'Image Link'},
     { id: 'action', label: 'Action'},
 ];
-
-const initialState: Question[] = [
+const initialState = [
     {
         category: 'physics',
         emotions: 'asd',
@@ -43,10 +42,10 @@ const initialState: Question[] = [
     }
 ];
 
-const CreateQuiz : FC = () => {
+const CreateQuiz = () => {
     const classes = useStyles();
     const [records, setRecords] = useState(initialState);
-    const [chips, setChips] = useState<string[]>([]);
+    const [chips, setChips] = useState([]);
     console.log(chips);
     const {
         TblContainer,
@@ -71,8 +70,8 @@ const CreateQuiz : FC = () => {
                 variant="outlined"
                 placeholder="Categories"
                 value={chips}
-                onAdd={(chip) => setChips(chips => [...chips!, chip])}
-                onDelete={(chip: string, index: number) => {
+                onAdd={(chip) => setChips(chips => [...chips, chip])}
+                onDelete={(chip, index) => {
                     setChips(values => values.filter((_, i) => i !== index))}}
             />
             <TblContainer>
@@ -80,7 +79,7 @@ const CreateQuiz : FC = () => {
             
             <TableBody>
             {
-                records.map((question : Question) =>
+                records.map((question) =>
                         <TableRow key={question.id}>
                             <TableCell>{question.questionText}</TableCell> 
                             <TableCell>{question.options}</TableCell> 
