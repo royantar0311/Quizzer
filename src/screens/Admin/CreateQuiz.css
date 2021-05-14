@@ -1,0 +1,34 @@
+.aq__button {
+    background-color: #4576A9;
+    border: none;
+    color: whitesmoke;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    float: right;
+    transition-duration: 0.5s;
+  }
+
+  .modal__button {
+    background-color: #4576A9;
+    border: none;
+    color: whitesmoke;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-top: 20px;
+    float: center;
+    transition-duration: 0.5s;
+  }
+
+  .app__form {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
