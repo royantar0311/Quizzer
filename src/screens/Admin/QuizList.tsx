@@ -7,9 +7,10 @@ import { Quiz } from '../../redux/quiz/quiz.types';
 import { RootState } from '../../redux/root.reducer';
 import EditIcon from '@material-ui/icons/Edit';
 import CancelIcon from '@material-ui/icons/Cancel';
-import log from '../../Util/Logger';
 import { deleteQuiz } from '../../redux/quiz/quiz.actions';
-import { Redirect, useHistory } from 'react-router';
+import { useHistory } from 'react-router';
+import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
+
 const headCells = [
     { id: 'quizCode', label: 'Code' },
     { id: 'quizName', label: 'Name' },
@@ -55,6 +56,9 @@ const QuizList : FC = () => {
                                         </ActionButton>
                                         <ActionButton onClick={()=>{dispatch(deleteQuiz(quiz))}}>
                                             <CancelIcon/>
+                                        </ActionButton>
+                                        <ActionButton onClick={()=> history.push(`/admin/result/${quiz.quizCode}`)}>
+                                            <QuestionAnswerIcon/>
                                         </ActionButton>
                                     </div>
                                 }
