@@ -9,6 +9,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import CancelIcon from '@material-ui/icons/Cancel';
 import log from '../../Util/Logger';
 import { deleteQuiz } from '../../redux/quiz/quiz.actions';
+import { Redirect, useHistory } from 'react-router';
 const headCells = [
     { id: 'quizCode', label: 'Code' },
     { id: 'quizName', label: 'Name' },
@@ -22,6 +23,7 @@ const QuizList : FC = () => {
 
     const classes = useStyles();
     const dispatch = useDispatch();
+    const history = useHistory(); 
     const quizzes : Quiz[] = useSelector((state: RootState) => state.quiz.quizzes)
     const [records, setRecords] = useState(quizzes);
     // @ts-ignore
@@ -48,22 +50,20 @@ const QuizList : FC = () => {
                             <TableCell>
                                 {   
                                     <div>
-                                        <ActionButton onClick={()=>{log('here')}}>
+                                        <ActionButton onClick={()=>history.push(`/admin/edit/${quiz.quizCode}`)}>
                                             <EditIcon/>
                                         </ActionButton>
                                         <ActionButton onClick={()=>{dispatch(deleteQuiz(quiz))}}>
                                             <CancelIcon/>
                                         </ActionButton>
                                     </div>
-                                    
-                                
                                 }
                             </TableCell>
                         </TableRow>   
                 )
             }
             </TableBody>
-        </TblContainer>
+        </TblContainer>     
         <TblPagination />
         </Paper>
         

@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { RootState } from '../../redux/root.reducer';
 import { AuthState } from '../../redux/types';
-
 const CreateQuiz = lazy(() => import ('./CreateQuiz'));
 const QuizList = lazy(() => import ('./QuizList'));
 
@@ -19,6 +18,9 @@ const Admin : FC = () => {
                 <Route exact path="/admin/create">
                     <CreateQuiz />
                 </Route> 
+                <Route exact path="/admin/edit/:quizCode">
+                    <CreateQuiz/>
+                </Route>
             </Switch>
     )
 }

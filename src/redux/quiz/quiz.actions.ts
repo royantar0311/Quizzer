@@ -15,6 +15,8 @@ export const getQuizzes = ()
                 quizCode: doc.id,
                 name: data.name,
                 description: data.description,
+				categories: data.categories,
+				questions: data.questions,
                 instructions: data.instructions
             });
         });

@@ -83,9 +83,6 @@ const App : FC = () => {
                   <Route path="/pagenotfound">
                     <PageNotFound />
                   </Route>
-                  <Route path="/createquiz">
-                    <CreateQuiz />
-                  </Route>
               </Switch> 
             </Suspense>
         </div>

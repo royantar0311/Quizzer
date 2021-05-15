@@ -6,8 +6,10 @@ export const DELETE_QUIZ = 'DELETE_QUIZ';
 export interface Quiz {
     quizCode: string,
     name: string,
+    categories: string[],
     description: string,
     instructions: string
+    questions: Question[]
 }
 
 export interface QuizState {

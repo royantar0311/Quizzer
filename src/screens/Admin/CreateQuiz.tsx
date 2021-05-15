@@ -2,15 +2,19 @@ import { FC, useState, ChangeEvent} from 'react';
 import { makeStyles, Paper, TableBody, TableCell, TableRow } from '@material-ui/core';
 import { Controls, PageHeader } from '../../components';
 import AddBoxIcon from '@material-ui/icons/AddBox';
-import { Question } from '../../redux/quiz/quiz.types';
+import { Question, QuizState } from '../../redux/quiz/quiz.types';
 import ActionButton from '../../components/controls/ActionButton';
 import EditIcon from '@material-ui/icons/Edit';
 import CancelIcon from '@material-ui/icons/Cancel';
 import useTable from '../../components/useTable';
 import ChipInput from 'material-ui-chip-input';
 import Modal from '@material-ui/core/Modal';
+import {useParams} from 'react-router-dom';
+import { Quiz } from '../../redux/quiz/quiz.types'
 import './CreateQuiz.css';
 import { nanoid } from 'nanoid';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/root.reducer';
 
 function getModalStyle() {
     const top = 50;
@@ -81,11 +85,15 @@ const intialModalInputState : Question = {
     id: ''
 }
 
-
 const CreateQuiz : FC = () => {
+    // @ts-ignore
+    const { quizCode } = useParams();
+    const quizState : QuizState = useSelector((state: RootState) => state.quiz);
+    const editQuiz : Quiz | undefined = quizState.quizzes.find((quiz) => quiz.quizCode === quizCode);
     const classes = useStyles();
-    const [records, setRecords] = useState(initialRecordState);
-    const [chips, setChips] = useState<string[]>([]);
+    const [quizName, setQuizName] = useState(editQuiz?.name ?? '');
+    const [records, setRecords] = useState( editQuiz?.questions ?? initialRecordState);
+    const [chips, setChips] = useState<string[]>(editQuiz?.categories ?? []);
     const [modalStyle] = useState(getModalStyle);
     const [isModalOpen, setModalOpen] = useState({status: false, mode: 'create'})
 
@@ -129,9 +137,12 @@ const CreateQuiz : FC = () => {
                     icon={<AddBoxIcon />}
                 />
 
-                <Controls.Input label="Quiz Name">
-                    Quiz Name
-                </Controls.Input>
+                <Controls.Input 
+                    variant="outlined"
+                    label="Quiz Name"
+                    value={quizName}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => setQuizName(e.target.value)}
+                />             
 
                 <ChipInput
                     className={classes.chipsStyle}
