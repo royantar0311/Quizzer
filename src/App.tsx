@@ -13,6 +13,7 @@ const Login = lazy(() => import ('./screens/Login'));
 const Admin = lazy(() => import ('./screens/Admin/'));
 const Home = lazy(() => import ('./screens/Home'));
 const PageNotFound = lazy(() => import ('./screens/PageNotFound'));
+const CreateQuiz = lazy(() => import ('./screens/Admin/CreateQuiz'));
 
 const theme = createMuiTheme({
   palette: {
@@ -82,7 +83,10 @@ const App : FC = () => {
                   <Route path="/pagenotfound">
                     <PageNotFound />
                   </Route>
-              </Switch>
+                  <Route path="/createquiz">
+                    <CreateQuiz />
+                  </Route>
+              </Switch> 
             </Suspense>
         </div>
     </ThemeProvider>
