@@ -5,15 +5,14 @@ import Header from './components/Header'
 import { createMuiTheme, makeStyles,ThemeProvider } from '@material-ui/core';
 import { setUser } from './redux/auth/auth.actions';
 import { SIGN_OUT } from './redux/types';
-import {Switch, Route} from 'react-router-dom'
+import {Switch, Route} from 'react-router-dom';
 import Loader from './components/useLoader';
 
-const Quiz = lazy(() => import ('./screens/Quiz'));
+const StartQuiz = lazy(() => import ('./screens/StartQuiz'));
 const Login = lazy(() => import ('./screens/Login'));
 const Admin = lazy(() => import ('./screens/Admin/'));
 const Home = lazy(() => import ('./screens/Home'));
 const PageNotFound = lazy(() => import ('./screens/PageNotFound'));
-const CreateQuiz = lazy(() => import ('./screens/Admin/CreateQuiz'));
 
 const theme = createMuiTheme({
   palette: {
@@ -75,7 +74,7 @@ const App : FC = () => {
                     <Login />
                   </Route>
                   <Route exact path="/quiz/:quizCode">
-                    <Quiz />
+                    <StartQuiz />
                   </Route>
                   <Route path="/admin">
                     <Admin />

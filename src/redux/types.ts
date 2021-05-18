@@ -7,6 +7,14 @@ export interface Admin {
     email: string;
 }
 
+export interface Examinee {
+    email: string,
+    fullName: string,
+    totalTime?: number,
+    totalScore?: number,
+    id: string
+}   
+
 export interface AuthState {
     user: null | Admin;
     authenticated: boolean;
