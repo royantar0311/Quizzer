@@ -4,48 +4,50 @@ export const SET_LOADING = 'SET_LOADING';
 export const SET_ERROR = 'SET_ERROR';
 
 export interface Admin {
-    email: string;
+	email: string;
 }
 
 export interface Examinee {
-    email: string,
-    fullName: string,
-    totalTime?: number,
-    totalScore?: number,
-    id: string
-}   
+	email: string;
+	fullName: string;
+	totalTime?: number;
+	totalScore?: number;
+	id: string;
+}
 
 export interface AuthState {
-    user: null | Admin;
-    authenticated: boolean;
-    isLoading: boolean;
-    error: string;
+	user: null | Admin;
+	authenticated: boolean;
+	isLoading: boolean;
+	error: string;
 }
 
 export interface SignInData {
-    email: string;
-    password: string;
+	email: string;
+	password: string;
 }
 
 interface SetUserAction {
-    type: typeof SET_USER;
-    payload: Admin;
+	type: typeof SET_USER;
+	payload: Admin;
 }
 
 interface SetLoadingAction {
-    type: typeof SET_LOADING;
-    payload: boolean;
+	type: typeof SET_LOADING;
+	payload: boolean;
 }
 
 interface SignOutAction {
-    type: typeof SIGN_OUT;
+	type: typeof SIGN_OUT;
 }
 
 interface SetErrorAction {
-    type: typeof SET_ERROR;
-    payload: string;
+	type: typeof SET_ERROR;
+	payload: string;
 }
 
-
-
-export type AuthAction = SetUserAction | SetLoadingAction | SignOutAction | SetErrorAction;
+export type AuthAction =
+	| SetUserAction
+	| SetLoadingAction
+	| SignOutAction
+	| SetErrorAction;

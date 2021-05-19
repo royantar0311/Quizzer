@@ -1,5 +1,3 @@
 import validate from './Validator';
 
-export {
-    validate
-}
+export { validate };
