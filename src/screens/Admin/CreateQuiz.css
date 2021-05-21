@@ -1,34 +1,53 @@
 .aq__button {
-    background-color: #4576A9;
-    border: none;
-    color: whitesmoke;
-    padding: 15px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    margin-left: 20px;
-    float: right;
-    transition-duration: 0.5s;
-  }
+  background-color: #4576A9;
+  border: none;
+  color: whitesmoke;
+  padding: 15px;
+  min-width: 20%;
+  max-width: 30%;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  float: right;
+  transition-duration: 0.5s;
+}
+.aq__button:hover {
+  border: 1px solid #4576A9;
+  background-color: white;
+  color: #4576A9;
+}
 
-  .modal__button {
-    background-color: #4576A9;
-    border: none;
-    color: whitesmoke;
-    padding: 15px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    border-radius: 5px;
-    margin-top: 20px;
-    float: center;
-    transition-duration: 0.5s;
-  }
+.modal__button {
+  background-color: #4576A9;
+  border: none;
+  color: whitesmoke;
+  padding: 15px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 5px;
+  margin-top: 20px;
+  float: center;
+  transition-duration: 0.5s;
+}
+.modal__button:hover {
+  border: 1px solid #4576A9;
+  background-color: white;
+  color: #4576A9;
+}
 
-  .app__form {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-  }
+.app__form {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.text__field__align {
+  display: row;
+  flex-direction: column;
+  padding: 10px;
+  margin-left: 00px;
+}

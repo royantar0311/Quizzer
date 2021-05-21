@@ -16,6 +16,8 @@ import DescriptionIcon from '@material-ui/icons/Description';
 import { QuizState } from '../../redux/quiz/quiz.types';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/root.reducer';
+import './QuizResult.css';
+import Modal from '@material-ui/core/Modal';
 
 const headCells = [
 	{ id: 'email', label: 'Email' },
@@ -31,8 +33,35 @@ const useStyles = makeStyles((theme) => ({
 		height: '400px',
 		margin: '30px auto',
 		padding: theme.spacing(3),
+
+	},
+	paper: {
+		position: 'absolute',
+		width: 'auto',
+		minWidth: 500,
+		maxWidth: '50%',
+		height: 'auto',
+		maxHeight: '80%',
+		backgroundColor: theme.palette.background.paper,
+		boxShadow: theme.shadows[5],
+		padding: theme.spacing(2, 4, 3),
+		top: '10%',
+		left: '10%',
+		overflow: 'scroll',
+		display: 'block'
 	},
 }));
+
+function getModalStyle() {
+    const top = 50;
+    const left = 50;
+
+    return {
+        top: `${top}%`,
+        left: `${left}%`,
+        transform: `translate(-${top}%, -${left}%)`,
+    };
+}
 
 const initialRecordState: Examinee[] = [
 	{
@@ -49,11 +78,13 @@ const QuizResult: FC = () => {
 	const { quizCode } = useParams();
 	const quizState: QuizState = useSelector((state: RootState) => state.quiz);
 	const classes = useStyles();
+	const [modalStyle] = useState(getModalStyle);
+	const [modalOpen, setModalOpen] = useState(false);
 	const [records, setRecords] = useState<Examinee[]>(initialRecordState);
 	const { TblContainer, TblHead, TblPagination } = useTable(
 		records,
 		headCells,
-		() => {}
+		() => { }
 	);
 
 	return (
@@ -63,17 +94,17 @@ const QuizResult: FC = () => {
 				subtitle="see resuts for each individual person"
 				icon={<EmailIcon />}
 			/>
-			<TblContainer>
+			<TblContainer >
 				<TblHead />
-				<TableBody>
+				<TableBody >
 					{records.map((record) => (
-						<TableRow key={record.id}>
+						<TableRow key={record.id} >
 							<TableCell>{record.email}</TableCell>
 							<TableCell>{record.fullName}</TableCell>
 							<TableCell>{record.totalTime}</TableCell>
 							<TableCell>{record.totalScore}</TableCell>
 							<TableCell>
-								<ActionButton onClick={() => console.log('modal opens')}>
+								<ActionButton onClick={() => setModalOpen(true)}>
 									<DescriptionIcon />
 								</ActionButton>
 							</TableCell>
@@ -82,6 +113,21 @@ const QuizResult: FC = () => {
 				</TableBody>
 			</TblContainer>
 			<TblPagination />
+
+			<Modal
+				open={modalOpen}
+				onClose={() => setModalOpen(false)}
+			>
+				<div style={modalStyle} className={classes.paper}>
+					<form className="app__form">
+
+						{/* necessary elements */}
+
+						<button className="modal__button" onClick={() => setModalOpen(false)}> Close </button>
+					</form>
+				</div>
+			</Modal>
+
 		</Paper>
 	);
 };

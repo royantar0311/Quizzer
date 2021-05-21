@@ -32,7 +32,7 @@ const QuizList: FC = () => {
 	const [records, setRecords] = useState(quizzes);
 	// @ts-ignore
 	const [filterFn, setFilterFn] = useState({
-		fn: (items) => {
+		fn: (items: any) => {
 			return items;
 		},
 	});
