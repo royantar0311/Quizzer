@@ -3,9 +3,30 @@
 	padding: '40px';
     margin-left: 100px;
     margin-right: 100px;
-    margin-top: 50px;
+    margin-top: 30px;
     margin-bottom: 50px;
     font-size: 22px;
+}
+.time__count {
+    text-align: justify;
+	padding: '40px';
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    float: left;
+}
+
+.ques__count {
+    text-align: justify;
+	padding: '40px';
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    float: right;
 }
 
 .options {
